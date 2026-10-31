@@ -123,18 +123,16 @@ button{cursor:pointer}
 .ls-h{display:grid;justify-items:center;gap:clamp(6px,1.2vh,14px)}
 .ls-h h1{margin:0;font-family:var(--f-serif);font-weight:500;font-size:clamp(2rem,7vh,5.2rem);line-height:1.05}
 .ls-h h1 i{font-style:italic}
-.ls-cols{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(14px,2.4vw,48px);min-height:0}
+.ls-cols{display:grid;grid-template-columns:minmax(0,1fr);width:min(100%,1200px);justify-self:center;min-height:0}
 .lcard{display:grid;grid-template-rows:auto minmax(0,1fr);border:1px dashed var(--line);border-radius:clamp(14px,1.6vw,24px);background:rgba(10,20,52,.42);padding:clamp(10px,2vh,26px) clamp(14px,1.6vw,30px);min-height:0;min-width:0;text-align:left}
 .lcard h2{margin:0 0 clamp(6px,1.4vh,16px);padding-bottom:clamp(6px,1.2vh,14px);border-bottom:1px solid var(--line);display:flex;align-items:center;gap:.55em;font-family:var(--f-serif);font-size:clamp(1.3rem,4.4vh,3rem);font-weight:600;line-height:1.1;letter-spacing:.1em;text-transform:uppercase;color:var(--gold-light);text-shadow:0 2px 20px rgba(240,213,140,.3)}
 .lcard h2::before{content:"";flex:none;width:.6em;height:.6em;background:var(--gold-light);-webkit-mask:var(--sparkle) center/contain no-repeat;mask:var(--sparkle) center/contain no-repeat}
-.lcard.yedek h2{color:var(--cream)}
-.lcard.yedek h2::before{background:var(--cream)}
 .lcard ol{list-style:none;margin:0;padding:0;display:grid;grid-template-rows:repeat(6,minmax(0,1fr));min-height:0}
-.lrow{display:grid;grid-template-columns:clamp(26px,2.4vw,48px) max-content minmax(0,1fr);align-items:center;gap:clamp(8px,1vw,20px);min-height:0;border-top:1px solid rgba(217,178,95,.16)}
+.lrow{display:grid;font-size:clamp(.9rem,3vh,2rem);grid-template-columns:clamp(26px,2.4vw,48px) 8.4em minmax(0,1fr);align-items:center;gap:clamp(8px,1vw,20px);min-height:0;border-top:1px solid rgba(217,178,95,.16)}
 .lrow:first-child{border-top:0}
 .lrow .rk{font-family:var(--f-serif);font-style:italic;font-size:clamp(1rem,3vh,2.1rem);color:var(--gold)}
-.lrow .no{justify-self:start;min-width:10.6ch;text-align:center;padding:.1em .6em;border-radius:999px;border:1px solid var(--line);font-family:var(--f-serif);font-weight:600;font-size:clamp(.85rem,2.3vh,1.6rem);color:var(--gold-light);font-variant-numeric:tabular-nums}
-.lrow .nm{font-family:var(--f-serif);font-weight:500;font-size:clamp(1.05rem,3.5vh,2.5rem);color:var(--cream);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.lrow .no{justify-self:stretch;text-align:center;padding:.1em .6em;border-radius:999px;border:1px solid var(--line);font-family:var(--f-serif);font-weight:600;font-size:clamp(.9rem,3vh,2rem);color:var(--gold-light);font-variant-numeric:tabular-nums}
+.lrow .nm{font-family:var(--f-serif);font-weight:500;font-size:clamp(1.1rem,4.4vh,3.1rem);color:var(--cream);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .lrow.empty .no,.lrow.empty .nm{color:rgba(246,240,226,.25);border-color:rgba(246,240,226,.15)}
 .ls-f{font-size:clamp(.9rem,2.4vh,1.6rem);font-weight:300;color:var(--text)}
 .ls-f b{font-family:var(--f-arabic);font-weight:400;color:var(--gold-light);font-size:1.25em;margin-inline-start:.4em}
@@ -302,7 +300,6 @@ kbd{font-family:var(--f-body);font-size:.72em;padding:1px 6px;border-radius:5px;
         </div>
         <div class="ls-cols">
           <section class="lcard asil"><h2>Asil Liste</h2><ol id="lAsil"></ol></section>
-          <section class="lcard yedek"><h2>Yedek Liste</h2><ol id="lYedek"></ol></section>
         </div>
         <div class="ls-f">Hayırlı yolculuklar, Rabbim kabul eylesin.<b lang="ar">لَبَّيْكَ</b></div>
       </div>
@@ -352,7 +349,7 @@ kbd{font-family:var(--f-body);font-size:.72em;padding:1px 6px;border-radius:5px;
       </section>
       <section class="card done" id="done" hidden>
         <div class="card-k">Kura tamamlandı</div>
-        <h2 class="serif" style="font-size:clamp(2rem,4.6vw,3rem);line-height:1.1">6 asil, 6 yedek <i class="gt">belirlendi</i></h2>
+        <h2 class="serif" style="font-size:clamp(2rem,4.6vw,3rem);line-height:1.1">6 asil <i class="gt">belirlendi</i></h2>
         <p>Şimdi herkesi sahnede birlikte gösterebilirsiniz.</p>
         <button class="btn primary" type="button" data-show="list">Tüm listeyi sahneye yansıt</button>
       </section>
@@ -369,8 +366,6 @@ kbd{font-family:var(--f-body);font-size:.72em;padding:1px 6px;border-radius:5px;
       <div class="card-k">Çekiliş sırası</div>
       <h3>Asil <span id="cAsil">0/6</span></h3>
       <div id="pAsil"></div>
-      <h3>Yedek <span id="cYedek">0/6</span></h3>
-      <div id="pYedek"></div>
       <div class="slots-f"><button class="btn danger" type="button" id="resetBtn">Tümünü sıfırla</button></div>
     </section>
   </div>
@@ -384,14 +379,15 @@ const SUPABASE_URL = 'https://kzptfbmyjumponkoxsdt.supabase.co';
 const SUPABASE_KEY = 'sb_publishable_lkMzGSj0tlRdVGKlPVeG6A_xSCA_3os';
 
 const N = 6;
-const TYPES = ['asil', 'yedek'];
+/* Sadece asil çekiliyor; yedek listesi kaldırıldı */
+const TYPES = ['asil'];
 const VIEWS = ['idle', 'reveal', 'list'];
 const $ = s => document.querySelector(s);
 const $$ = s => [...document.querySelectorAll(s)];
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
 const blankList = () => Array.from({ length: N }, () => ({ no: '', name: '' }));
-const blank = () => ({ asil: blankList(), yedek: blankList() });
+const blank = () => ({ asil: blankList() });
 const idleShow = () => ({ view: 'idle', t: 'asil', i: 0, at: 0 });
 const label = (t, i) => `${i + 1}. ${t === 'asil' ? 'Asil' : 'Yedek'}`;
 const filled = r => !!(r && r.no && r.name);
@@ -574,9 +570,7 @@ function fillReveal(t, i, slot) {
   let k = 0;
   nm.innerHTML = slot.name.split(' ').map(w => `<span class="w">${[...w].map(c => `<span class="ch" style="--d:${k++}">${esc(c)}</span>`).join('')}</span>`).join(' ');
   nm.setAttribute('aria-label', slot.name);
-  $('#rvMsg').innerHTML = t === 'asil'
-    ? 'Kutsal topraklara, <b>umre ziyaretine</b> gitmeye hak kazandınız.'
-    : `Umre kurasında <b>${i + 1}. yedek</b> olarak belirlendiniz.`;
+  $('#rvMsg').innerHTML = 'Kutsal topraklara, <b>umre ziyaretine</b> gitmeye hak kazandınız.';
 }
 function fillList() {
   let k = 0;
@@ -743,7 +737,7 @@ async function write(data, show, okMsg) {
   S.busy = true; renderPanel();
   try {
     const { data: rows, error } = await S.db.from('kura')
-      .update({ asil: data.asil, yedek: data.yedek, show, updated_at: new Date().toISOString() })
+      .update({ asil: data.asil, yedek: [], show, updated_at: new Date().toISOString() })
       .eq('id', 1).select('updated_at');
     if (error) throw error;
     /* Güvenlik kuralı güncellemeyi reddederse hata değil boş sonuç döner */
@@ -757,7 +751,7 @@ async function write(data, show, okMsg) {
     return false;
   } finally { S.busy = false; renderPanel(); }
 }
-const clone = d => ({ asil: d.asil.map(r => ({ ...r })), yedek: d.yedek.map(r => ({ ...r })) });
+const clone = d => ({ asil: d.asil.map(r => ({ ...r })) });
 
 $('#inNo').addEventListener('input', e => { e.target.value = e.target.value.replace(/\D/g, ''); warn(''); S.dupOk = null; });
 $('#inName').addEventListener('input', () => warn(''));
